@@ -8,6 +8,8 @@ import {MatChipInputEvent} from '@angular/material/chips';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { DataService } from 'src/app/services/data.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 
 /**
@@ -19,6 +21,8 @@ import { DataService } from 'src/app/services/data.service';
   templateUrl: './add-component.component.html',
   styleUrls: ['./add-component.component.scss']
 })
+
+
 export class AddComponentComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
@@ -36,13 +40,19 @@ export class AddComponentComponent implements OnInit {
   url ='';
   selectedFile: any;
 
+  errorMessage: string;
+
+
   @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
 
 
   constructor(
     private fb: FormBuilder,
-              private httpClient: HttpClient,
-              private AddToast: DataService
+              private AddToast: DataService,
+              private snackBar: MatSnackBar,
+              private router: Router
+
+
   ) { 
     this.filteredFruits = this.fruitCtrl.valueChanges.pipe(
       startWith(null),
@@ -142,7 +152,7 @@ export class AddComponentComponent implements OnInit {
 
     this.user_id = localStorage.getItem('ID')
 
-  
+    if (this.user_id) {
     this.formData.set('photo', this.selectedFile);
 
     this.formData.set('data', JSON.stringify(this.sendform));
@@ -153,15 +163,59 @@ export class AddComponentComponent implements OnInit {
 
 
     
-    this.AddToast.AddToast(this.formData).subscribe((res)=> {
-      console.log(res)
-            console.log(uploadData)
+    this.AddToast.AddToast(this.formData).subscribe(
+      (res) => {
+        console.log(res);
+        console.log(uploadData);
+        console.log(this.sendform);
+        this.myForm.reset();
+        this.img_block = false;
+        this.fruits = [''];
 
-    console.log(this.sendform)
-    this.myForm.reset()
-    this.img_block = false 
-    this.fruits = ['']
-  })
-  }
+           // Show success toast
+      this.snackBar.open('Successfully added!', 'Close', {
+        duration: 3000,
+        panelClass: 'success-snackbar',
 
+      });
+
+      },
+      (error) => {
+        if (error.status === 401) {
+          this.errorMessage = 'You are not authorized to add toast.';
+        } else {
+          this.errorMessage = 'An error occurred.';
+        }
+  
+        // Show error toast
+        this.snackBar.open(this.errorMessage, 'Close', {
+          duration: 4000,
+          panelClass: 'error-snackbar',
+        });
+      }
+      
+    )} 
+    
+    else {
+      // Show unauthorized error message
+      this.errorMessage = 'You are not authorized to add toast.';
+      this.snackBar.open(this.errorMessage, 'Close', {
+        duration: 3000,
+        panelClass: 'error-snackbar' ,
+
+      });
+  
+ // Navigate to login route after 3-4 seconds
+ setTimeout(() => {
+  this.router.navigate(['login']);
+}, 3200); // Change the duration to your preference
 }
+
+      
+    
+    
+    
+    }
+  
+      
+  }

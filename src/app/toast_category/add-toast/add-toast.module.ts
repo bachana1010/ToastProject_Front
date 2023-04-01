@@ -13,6 +13,8 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatIconModule } from "@angular/material/icon";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 // import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -35,6 +37,7 @@ import { MatIconModule } from "@angular/material/icon";
     MatGridListModule,
     MatAutocompleteModule,
     MatIconModule,
+    MatSnackBarModule
 
   ]
 })
