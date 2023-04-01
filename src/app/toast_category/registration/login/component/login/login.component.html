@@ -1,0 +1,35 @@
+
+
+
+<div class="masthead" style="background-image: url('https://i.pinimg.com/564x/92/64/5f/92645fde2479793d8e5c2135e2a560e1.jpg')">
+
+<div class="container">
+  
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        
+        <div class="text-center">
+          <h1>login</h1>
+        </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+
+            <div class="form-group">
+              <label for="exampleInputPassword1">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            
+            <button type="submit">Login</button>
+          </form>
+
+        <a routerLink="/registration" id="question-login">New user? sign up</a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

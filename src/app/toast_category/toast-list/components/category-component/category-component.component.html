@@ -1,0 +1,88 @@
+
+<div class="masthead">
+  <div class="cards-container">
+
+  <div *ngFor="let item of toasts" class="meore">
+
+    <div class="card" style="width: 18rem;">
+      <img [src]="getImgUrl(item.img)" />
+
+
+      <div class="card-body">
+        <h5 class="card-title">    {{ item.content }}
+        </h5>
+        <p class="card-text">    {{ item.title}}
+        </p>
+
+
+        <mat-chip-list>
+          <mat-chip *ngFor="let chip of item.input">
+
+            {{ chip }}
+          
+          </mat-chip>
+        </mat-chip-list>
+        
+      </div>
+      <button *ngIf="item.user_id === userId" (click)="deleteToast(item.id)">delete</button>
+
+    </div>
+
+    </div>
+
+    <div class="pagination">
+      <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+      <span *ngFor="let pageNumber of getPageNumbers()" [class.active]="pageNumber === currentPage">
+        <a class="page-number" (click)="goToPage(pageNumber)" [routerLink]="[]" [queryParams]="{page: pageNumber}">{{ pageNumber }}</a>
+      </span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+    </div>
+  <!-- </div>
+    <button (click)="previousPage()">Previous </button>
+    <button (click)="nextPage()">Next</button>
+
+
+</div> -->
+
+
+<!-- 
+ <mat-chip-list>
+  <mat-chip *ngFor="let chip of inputs" [selectable]="true" [removable]="true"
+            >
+    {{ chip }}
+  </mat-chip>
+</mat-chip-list> -->
+<!-- <div *ngFor="let input of inputs">
+
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+  <!-- <div *ngFor="let d of data | paginate: 
+  { itemsPerPage: 1, currentPage: p }" >
+   <p>"title" = {{ d.title }}</p>
+ <p>"img" = {{ d.img }} -->
+  <!-- <p>"content" = {{ d.content }}
+      <p>"input" = {{ d.input }} --> 
+
+   <!-- </p>
+
+   <hr> -->
+ <!-- </div>
+ <pagination-controls 
+ (pageChange)="p = $event" 
+ class="float-right">
+ </pagination-controls> -->
+
+<!-- <div *ngFor="let data of data">
+    <h2>{{ data.name }}</h2>
+    <img [src]="getImgUrl(data.img)" />
+  </div> -->

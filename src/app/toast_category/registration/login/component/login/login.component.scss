@@ -1,0 +1,52 @@
+
+.card{
+border: 1px solid whitesmoke;
+width: 500px;
+padding: 40px;
+position: absolute;
+top: 2%;
+left: 50%;
+transform: translate(-50%,50%);
+background: transparent;
+box-shadow: inset -5px -5px  linear-gradient(5535deg, #757f9a,#d7dde8);
+}
+
+.card h1, h6{
+  color: whitesmoke
+}
+label {
+  color: whitesmoke
+}
+
+.btn{
+  background-color: whitesmoke;
+  color:black;
+  margin-top: 50px;
+  margin-left: 100px;
+  width:200px
+
+}
+
+.btn:hover{
+  color: greenyellow;
+}
+
+.form-control{
+  background-color: transparent;
+  border: 1px solid whitesmoke;
+  color: greenyellow; 
+  font-size: 1.25rem;
+          font-weight: lighter;
+          border: 1px solid whitesmoke;
+          margin-bottom: 10px;
+  
+}
+
+#question-login{
+  color:white;
+  margin-left:120px
+}
+#question-login:hover{
+  color: greenyellow; 
+
+}
