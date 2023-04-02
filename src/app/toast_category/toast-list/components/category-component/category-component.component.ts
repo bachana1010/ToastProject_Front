@@ -4,6 +4,11 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from 'src/app/dialog/dialog.component';
+
+
+
 
 
 
@@ -34,7 +39,10 @@ export class CategoryComponentComponent implements OnInit {
   constructor(  private httpClient: HttpClient,
                 private sanitizer: DomSanitizer,
                 private route: ActivatedRoute,
-                private router: Router) { }
+                private router: Router,
+                public dialog: MatDialog 
+                
+                ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -95,47 +103,65 @@ export class CategoryComponentComponent implements OnInit {
     }
   
 
+    openConfirmationDialog(id: number): void {
+      const dialogRef = this.dialog.open(DialogComponent, {
+        data: { message: 'Are you sure you want to delete this toast?' }
+      });
     
+      dialogRef.afterClosed().subscribe(result => {
+        if (result === true) {
+          this.deleteToast(id);
+        }
+      });
+    }
   
 
 
   // delete functional
 
   deleteToast(id: any) {
-    const token: string | null = localStorage.getItem('Authorization');
-
-    // define the HTTP headers with the token
-    let headers = new HttpHeaders();
-    if (token) {
-      headers = headers.set('Authorization', 'Bearer ' + token);
-    }
-
-    // extract the ID from the toast object
-    console.log("aidi", id);
-    // send the DELETE request with the headers
-    this.httpClient.delete(`${this.apiURL}/${id}`, { headers }).subscribe(
-      () => {
-        console.log(`Deleted toast with ID ${id}`);
-        // remove the deleted toast from the array
-        const index = this.toasts.findIndex(item => item.id === id);
-        if (index !== -1) {
-          this.toasts.splice(index, 1);
-        }
-
-        // If the last item on the page was deleted and it's not the first page
-        if (this.toasts.length === 0 && this.currentPage !== 1) {
-          this.previousPage();
-        } else {
-          this.loadData(this.currentPage);
-        }
-      },
-      error => {
-        console.error(error);
-      }
-    );
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { title: 'Delete Toast', message: 'Are you sure you want to delete this toast?' }
+    });
   
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const token: string | null = localStorage.getItem('Authorization');
+  
+        // define the HTTP headers with the token
+        let headers = new HttpHeaders();
+        if (token) {
+          headers = headers.set('Authorization', 'Bearer ' + token);
+        }
+  
+        // extract the ID from the toast object
+        console.log("aidi", id);
+        // send the DELETE request with the headers
+        this.httpClient.delete(`${this.apiURL}/${id}`, { headers }).subscribe(
+          () => {
+            console.log(`Deleted toast with ID ${id}`);
+            // remove the deleted toast from the array
+            const index = this.toasts.findIndex(item => item.id === id);
+            if (index !== -1) {
+              this.toasts.splice(index, 1);
+            }
+  
+            // If the last item on the page was deleted and it's not the first page
+            if (this.toasts.length === 0 && this.currentPage !== 1) {
+              this.previousPage();
+            } else {
+              this.loadData(this.currentPage);
+            }
+          },
+          error => {
+            console.error(error);
+          }
+        );
+      }
+    });
   }
-
+  
   handleResponse(response: any) {
     this.userId = response.user_id;
     this.toasts = response.data;
@@ -156,6 +182,20 @@ export class CategoryComponentComponent implements OnInit {
     console.log(typeof response.data);
     console.log("es", typeof this.fruits);
   }
+
+  openDeleteDialog(id: any): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '250px',
+      data: { message: 'Are you sure you want to delete this toast?' }
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deleteToast(id);
+      }
+    });
+  }
+  
 }
     
 

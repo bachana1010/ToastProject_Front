@@ -1,0 +1,35 @@
+<div class="masthead">
+    <div class="cards-container">
+  
+        <ng-container *ngFor="let item of toasts | reverse; let i = index" >
+      <div class="meore">
+  
+        <div class="card" style="width: 18rem;">
+          <img [src]="getImgUrl(item.img)" />
+  
+          <div class="card-body">
+            <h5 class="card-title">{{ item.content }}</h5>
+            <p class="card-text">{{ item.title }}</p>
+  
+            <mat-chip-list>
+              <mat-chip *ngFor="let chip of item.input">
+                {{ chip }}
+              </mat-chip>
+            </mat-chip-list>
+            
+          </div>
+          <button (click)="deleteToast(item.id)" >delete</button>
+        </div>
+  
+      </div>
+      <div *ngIf="i === toasts.length - 1" class="pagination">
+        <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+        <span *ngFor="let pageNumber of getPageNumbers()" [class.active]="pageNumber === currentPage">
+          <a class="page-number" (click)="goToPage(pageNumber)" [routerLink]="[]" [queryParams]="{page: pageNumber}">{{ pageNumber }}</a>
+        </span>
+        <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+      </div>
+    </ng-container>
+    </div>
+    
+  </div>

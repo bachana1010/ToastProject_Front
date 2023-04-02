@@ -24,9 +24,10 @@
         </mat-chip-list>
         
       </div>
-      <button *ngIf="item.user_id === userId" (click)="deleteToast(item.id)">delete</button>
-
+      <button *ngIf="item.user_id === userId" (click)="openConfirmationDialog(item.id)">delete</button>
+      <!-- (click)="deleteToast(item.id)"  -->
     </div>
+    <app-dialog></app-dialog>
 
     </div>
 
@@ -37,52 +38,3 @@
       </span>
       <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
     </div>
-  <!-- </div>
-    <button (click)="previousPage()">Previous </button>
-    <button (click)="nextPage()">Next</button>
-
-
-</div> -->
-
-
-<!-- 
- <mat-chip-list>
-  <mat-chip *ngFor="let chip of inputs" [selectable]="true" [removable]="true"
-            >
-    {{ chip }}
-  </mat-chip>
-</mat-chip-list> -->
-<!-- <div *ngFor="let input of inputs">
-
-</div> -->
-
-
-
-
-
-
-
-
-
-
-
-  <!-- <div *ngFor="let d of data | paginate: 
-  { itemsPerPage: 1, currentPage: p }" >
-   <p>"title" = {{ d.title }}</p>
- <p>"img" = {{ d.img }} -->
-  <!-- <p>"content" = {{ d.content }}
-      <p>"input" = {{ d.input }} --> 
-
-   <!-- </p>
-
-   <hr> -->
- <!-- </div>
- <pagination-controls 
- (pageChange)="p = $event" 
- class="float-right">
- </pagination-controls> -->
-
-<!-- <div *ngFor="let data of data">
-    <h2>{{ data.name }}</h2>
-    <img [src]="getImgUrl(data.img)" />
-  </div> -->

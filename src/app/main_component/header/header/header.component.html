@@ -27,9 +27,14 @@
                     <a class="nav-link" href="#signup">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"[routerLink]="['/profile']">Profile</a>
+                    <a class="nav-link" [routerLink]="['/profile']">Profile</a>
                 </li>
                 
+                <li class="nav-item">
+                    <a class="nav-link"  *ngIf="authservice.loggedIn()" [routerLink]="['/MyToast']">MyToast</a>
+                </li>
+
+
                 <li class="nav-item">
                     <a class="nav-link" [routerLink]="['/login']" *ngIf="!authservice.loggedIn()">login</a>
                 </li>

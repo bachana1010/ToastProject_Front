@@ -37,6 +37,14 @@ const routes: Routes = [
     loadChildren: () => import ('./toast_category/profile/profile.module').then(item => item.ProfileModule),
     canActivate: [AuthGuard]
   },
+
+  {
+    path: "MyToast",
+    loadChildren: () => import ('./toast_category/my_toast/my-toast.module').then(item => item.MyToastModule),
+    canActivate: [AuthGuard]
+  },
+
+
 ];
 
 @NgModule({

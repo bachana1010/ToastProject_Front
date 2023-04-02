@@ -11,19 +11,22 @@ import { AuthService } from './services/auth.service';
 import { NgEventBus } from 'ng-event-bus';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatChipsModule} from '@angular/material/chips';
+import { DialogComponent } from './dialog/dialog.component';
 
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatChipsModule
+    MatChipsModule,
+    MatDialogModule
 
   ],
   providers: [CookieService, AuthGuard, AuthService, NgEventBus],

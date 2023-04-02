@@ -213,9 +213,7 @@ export class AddComponentComponent implements OnInit {
 
       
     
-    
-    
-    }
   
-      
+    
+    }   
   }
