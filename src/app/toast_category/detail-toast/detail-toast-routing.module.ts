@@ -4,7 +4,7 @@ import { DetailComponentComponent } from './components/detail-component/detail-c
 
 const routes: Routes = [
   {
-    path:'',
+    path:':id',
     component: DetailComponentComponent
   }
 ];
@@ -14,3 +14,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class DetailToastRoutingModule { }
+
+

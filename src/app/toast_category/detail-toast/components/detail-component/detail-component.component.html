@@ -1,4 +1,48 @@
+<!-- 
+<div class="masthead">
+    <div *ngIf="printData">
 
-<div class="masthead" style="background-image: url('https://images.unsplash.com/photo-1607843449148-60c1da77a0c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80')">
-
-</div>
+        <div class="card" style="width: 18rem;">
+            <img [src]="getImgUrl(printData.img)" />
+      
+      
+            <div class="card-body">
+              <h5 class="card-title">    {{ printData.content }}
+              </h5>
+              <p class="card-text">    {{ printData.title}}
+              </p>
+      
+      
+              <mat-chip-list>
+                <mat-chip *ngFor="let chip of printData.input">
+      
+                  {{ chip }}
+                
+                </mat-chip>
+              </mat-chip-list>
+        
+       
+    
+        </div>
+    
+        
+</div> -->
+<div class="masthead">
+    <div class="toast-detail">
+      <div class="toast-photo">
+        <img *ngIf="printData?.img" [src]="getImgUrl(printData.img)" alt="Toast" />
+      </div>
+      <div class="toast-content">
+        <h2>{{ printData?.title }}</h2>
+        <p>{{ printData?.description }}</p>
+        <div class="match-chips">
+          <mat-chip-list>
+            <mat-chip *ngFor="let chip of printData.input">
+              {{ chip }}
+            </mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+  </div>
+  
