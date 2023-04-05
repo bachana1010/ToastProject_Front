@@ -1,78 +1,40 @@
-<!-- 
-<div class="masthead">
-    <div *ngIf="printData">
-
-        <div class="card" style="width: 18rem;">
-            <img [src]="getImgUrl(printData.img)" />
-      
-      
-            <div class="card-body">
-              <h5 class="card-title">    {{ printData.content }}
-              </h5>
-              <p class="card-text">    {{ printData.title}}
-              </p>
-      
-      
-              <mat-chip-list>
-                <mat-chip *ngFor="let chip of printData.input">
-      
-                  {{ chip }}
-                
-                </mat-chip>
-              </mat-chip-list>
-        
-       
-    
-        </div>
-    
-        
-</div> -->
-<!-- <div class="masthead">
-    <div class="toast-detail">
-      <div class="toast-photo">
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ printData?.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="toast-details">
+      <div class="toast-image">
         <img *ngIf="printData?.img" [src]="getImgUrl(printData.img)" alt="Toast" />
       </div>
       <div class="toast-content">
-        <h2>{{ printData?.title }}</h2>
-        <p>{{ printData?.description }}</p>
-        <div class="match-chips">
-          <mat-chip-list>
-            <mat-chip *ngFor="let chip of printData.input">
-              {{ chip }}
-            </mat-chip>
-          </mat-chip-list>
+        <p>{{ printData?.content }}</p>
+        <div class="toast-actions">
+          <button mat-icon-button color="primary">
+            <mat-icon>thumb_up</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon>thumb_down</mat-icon>
+          </button>
+          <span>Seen {{ printData?.views }} times</span>
         </div>
       </div>
     </div>
-  </div> -->
-  
+  </mat-card-content>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>{{ printData?.title }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <div class="toast-details">
-        <div class="toast-image">
-          <img *ngIf="printData?.img" [src]="getImgUrl(printData.img)" alt="Toast" />
-        </div>
-        <div class="toast-content">
-          <p>{{ printData?.content }}</p>
-          <mat-form-field appearance="outline">
-            <mat-label>Input your comment</mat-label>
-            <input matInput placeholder="Enter your comment"  />
-          </mat-form-field>
-          <div class="toast-actions">
-            <button mat-icon-button color="primary">
-              <mat-icon>thumb_up</mat-icon>
-            </button>
-            <button mat-icon-button color="warn">
-              <mat-icon>thumb_down</mat-icon>
-            </button>
-            <span>Seen {{ printData?.views }} times</span>
-          </div>
-        </div>
-      </div>
-    </mat-card-content>
-  </mat-card>
-  
+  <mat-card-content class="comment-section">
+    <div class="comment-input">
+      <mat-form-field appearance="outline">
+        <mat-label>Input your comment</mat-label>
+        <input matInput placeholder="Enter your comment" [(ngModel)]="newComment" />
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addComment(newComment)">Add Comment</button>
+    </div>
+    <div class="comments" *ngFor="let comment of comments">
+      <p>{{ comment.content }}</p>
+      <small>
+        {{ comment.user_name }} - {{ comment.timestamp | date: "medium" }}
+      </small>
+    </div>
+  </mat-card-content>
+</mat-card>

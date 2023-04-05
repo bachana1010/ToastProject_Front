@@ -48,6 +48,21 @@ mat-card {
   box-sizing: border-box;
 }
 
+.toast-details {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-input {
+  display: flex;
+  flex-direction: column;
+}
+
 .mat-card {
   max-width: 100%;
 }

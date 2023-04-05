@@ -7,6 +7,7 @@ interface ApiResponse {
   data: any[];
   total_pages: number;
 }
+
 @Component({
   selector: 'app-detail-component',
   templateUrl: './detail-component.component.html',
@@ -16,6 +17,10 @@ export class DetailComponentComponent implements OnInit {
 
   public printData: any = null;
   myForm: FormGroup | any;
+  comments: any[] = [];
+  public newComment: string = '';
+
+
   
   constructor( private httpClient:HttpClient,
     private router: ActivatedRoute,
@@ -26,6 +31,8 @@ export class DetailComponentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData()
+    this.getComments();
+
 
   }
   getData() {
@@ -34,10 +41,33 @@ export class DetailComponentComponent implements OnInit {
 
       console.log(res)
       this.printData = res.data.find((item: any) => item.id === id)
-  });
-  
+  });}
 
-}
+getComments() {
+  this.httpClient.get<any[]>(`http://127.0.0.1:8040/toasts/${this.currentId}/comments`).subscribe((res) => {
+    this.comments = res;
+
+  });}
+
+
+  addComment(commentContent: string) {
+    if (!commentContent) {
+      return;
+    }
+  
+    const payload = { content: commentContent };
+
+
+    const token = localStorage.getItem('Authorization');
+    console.log(token)
+  // Set the headers with the token
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.httpClient.post<any>(`http://127.0.0.1:8040/toasts/${this.currentId}/comments`, payload,  { headers }).subscribe((res) => {
+      this.comments.unshift(res);
+    });
+  }
+
 getImgUrl(img: string): SafeUrl {
   const dataUrl = `data:image/jpeg;base64,${img}`;
   return this.sanitizer.bypassSecurityTrustUrl(dataUrl);
