@@ -1,11 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit} from '@angular/core';
 import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer,SafeUrl } from '@angular/platform-browser';
+
 interface ApiResponse {
   data: any[];
   total_pages: number;
+}
+
+interface DetailResponse {
+  success: boolean;
+  message?: string; // Optional message property
+  data: any;
 }
 
 @Component({
@@ -13,7 +20,7 @@ interface ApiResponse {
   templateUrl: './detail-component.component.html',
   styleUrls: ['./detail-component.component.scss']
 })
-export class DetailComponentComponent implements OnInit {
+export class DetailComponentComponent implements OnInit{
 
   public printData: any = null;
   myForm: FormGroup | any;
@@ -25,23 +32,39 @@ export class DetailComponentComponent implements OnInit {
   constructor( private httpClient:HttpClient,
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    ) { }
+    ) {
+      this.router.params.subscribe(params => {
+        this.currentId = +params['id']; // Convert the id to a number
+        this.getDetailData();
+      });
+     }
+
 
   currentId:number = parseFloat(this.router.snapshot.params['id'])
 
   ngOnInit(): void {
-    this.getData()
     this.getComments();
+    console.log(this.printData);
 
 
   }
-  getData() {
-    const id:number = this.currentId
-    this.httpClient.get<ApiResponse>("http://127.0.0.1:8040/list").subscribe((res)=>{
 
-      console.log(res)
-      this.printData = res.data.find((item: any) => item.id === id)
-  });}
+  getDetailData() {
+
+    this.httpClient
+    .get<DetailResponse>(`http://127.0.0.1:8040/detail/id/${this.currentId}`)
+    .subscribe((res) => {
+      console.log(res);
+      if (res.success) {
+        this.printData = res.data;
+      } else {
+        // Handle item not found or any other error message
+        console.error(res.message);
+      }
+    });
+
+
+}
 
 getComments() {
   this.httpClient.get<any[]>(`http://127.0.0.1:8040/toasts/${this.currentId}/comments`).subscribe((res) => {
@@ -74,3 +97,5 @@ getImgUrl(img: string): SafeUrl {
 }
 
 }
+
+

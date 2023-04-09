@@ -48,6 +48,8 @@ export class CategoryComponentComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       const page = params['page'] ? parseInt(params['page'], 10) : 1;
       this.loadData(page);
+      console.log(`Loading data for page: ${this.currentPage}`);
+console.log(`Params:`, params);
  
    
   })}
