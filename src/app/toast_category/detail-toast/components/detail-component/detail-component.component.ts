@@ -3,6 +3,7 @@ import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer,SafeUrl } from '@angular/platform-browser';
+import { AuthService } from 'src/app/services/auth.service';
 
 interface ApiResponse {
   data: any[];
@@ -32,6 +33,7 @@ export class DetailComponentComponent implements OnInit{
   constructor( private httpClient:HttpClient,
     private router: ActivatedRoute,
     private sanitizer: DomSanitizer,
+    private auth: AuthService
     ) {
       this.router.params.subscribe(params => {
         this.currentId = +params['id']; // Convert the id to a number
@@ -41,6 +43,7 @@ export class DetailComponentComponent implements OnInit{
 
 
   currentId:number = parseFloat(this.router.snapshot.params['id'])
+  auth1 = this.auth.loggedIn()
 
   ngOnInit(): void {
     this.getComments();
@@ -89,6 +92,7 @@ getComments() {
     this.httpClient.post<any>(`http://127.0.0.1:8040/toasts/${this.currentId}/comments`, payload,  { headers }).subscribe((res) => {
       this.comments.unshift(res);
     });
+    this.newComment = ''
   }
 
 getImgUrl(img: string): SafeUrl {

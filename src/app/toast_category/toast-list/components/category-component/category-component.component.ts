@@ -122,51 +122,43 @@ console.log(`Params:`, params);
   // delete functional
 
   deleteToast(id: any) {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: { title: 'Delete Toast', message: 'Are you sure you want to delete this toast?' }
-    });
+    const token: string | null = localStorage.getItem('Authorization');
   
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const token: string | null = localStorage.getItem('Authorization');
+    // define the HTTP headers with the token
+    let headers = new HttpHeaders();
+    if (token) {
+      headers = headers.set('Authorization', 'Bearer ' + token);
+    }
   
-        // define the HTTP headers with the token
-        let headers = new HttpHeaders();
-        if (token) {
-          headers = headers.set('Authorization', 'Bearer ' + token);
+    // extract the ID from the toast object
+    console.log("aidi", id);
+    // send the DELETE request with the headers
+    this.httpClient.delete(`${this.apiURL}/${id}`, { headers }).subscribe(
+      () => {
+        console.log(`Deleted toast with ID ${id}`);
+        // remove the deleted toast from the array
+        const index = this.toasts.findIndex(item => item.id === id);
+        if (index !== -1) {
+          this.toasts.splice(index, 1);
         }
   
-        // extract the ID from the toast object
-        console.log("aidi", id);
-        // send the DELETE request with the headers
-        this.httpClient.delete(`${this.apiURL}/${id}`, { headers }).subscribe(
-          () => {
-            console.log(`Deleted toast with ID ${id}`);
-            // remove the deleted toast from the array
-            const index = this.toasts.findIndex(item => item.id === id);
-            if (index !== -1) {
-              this.toasts.splice(index, 1);
-            }
-  
-            // If the last item on the page was deleted and it's not the first page
-            if (this.toasts.length === 0 && this.currentPage !== 1) {
-              this.previousPage();
-            } else {
-              this.loadData(this.currentPage);
-            }
-          },
-          error => {
-            console.error(error);
-          }
-        );
+        // If the last item on the page was deleted and it's not the first page
+        if (this.toasts.length === 0 && this.currentPage !== 1) {
+          this.previousPage();
+        } else {
+          this.loadData(this.currentPage);
+        }
+      },
+      error => {
+        console.error(error);
       }
-    });
+    );
   }
   
   handleResponse(response: any) {
     this.userId = response.user_id;
     this.toasts = response.data;
+
     console.log(this.toasts);
     this.totalPages = response.total_pages;
     this.fruits = JSON.parse(response.data[0].input);
@@ -185,20 +177,25 @@ console.log(`Params:`, params);
     console.log("es", typeof this.fruits);
   }
 
-  openDeleteDialog(id: any): void {
-    const dialogRef = this.dialog.open(DialogComponent, {
-      width: '250px',
-      data: { message: 'Are you sure you want to delete this toast?' }
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.deleteToast(id);
-      }
-    });
-  }
+
   
 }
     
 
   
+
+
+
+
+  // openDeleteDialog(id: any): void {
+  //   const dialogRef = this.dialog.open(DialogComponent, {
+  //     width: '250px',
+  //     data: { message: 'Are you sure you want to delete this toast?' }
+  //   });
+  
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     if (result) {
+  //       this.deleteToast(id);
+  //     }
+  //   });
+  // }

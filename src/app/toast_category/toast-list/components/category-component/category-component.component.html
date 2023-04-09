@@ -25,12 +25,10 @@
         
       </div>
       <button *ngIf="item.user_id === userId" (click)="openConfirmationDialog(item.id)">delete</button>
-      <!-- (click)="deleteToast(item.id)"  -->
       <div class="author">
         <a [routerLink]="['/details/',item.id]">detail</a>
 </div>
     </div>
-    <!-- <app-dialog></app-dialog> -->
 
     </div>
 

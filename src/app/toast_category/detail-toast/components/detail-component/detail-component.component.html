@@ -22,11 +22,13 @@
     </div>
   </mat-card-content>
 
+  
+  <ng-container *ngIf="auth1">
   <mat-card-content class="comment-section">
     <div class="comment-input">
       <mat-form-field appearance="outline">
         <mat-label>Input your comment</mat-label>
-        <input matInput placeholder="Enter your comment" [(ngModel)]="newComment" />
+        <input matInput placeholder="Enter your comment" [(ngModel)]="newComment"/>
       </mat-form-field>
       <button mat-raised-button color="primary" (click)="addComment(newComment)">Add Comment</button>
     </div>
@@ -37,4 +39,5 @@
       </small>
     </div>
   </mat-card-content>
+</ng-container>
 </mat-card>

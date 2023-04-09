@@ -15,12 +15,7 @@ export class DialogComponent {
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: { message: string }  ) {}
 
-  // onNoClick(): void {
-  //   this.dialogRef.close(false);
-  // }
-  // onYesClick(): void {
-  //   this.dialogRef.close(true);
-  // }
+
   cancel(): void {
     this.dialogRef.close(false);
   }

@@ -18,7 +18,6 @@ export class RegistComponent implements OnInit {
   public sendSignupform: any = ""
 
   constructor(private formBuilder: FormBuilder,
-    private httpClient: HttpClient,
     private router: Router,
     private authService: AuthService
 
@@ -35,28 +34,33 @@ export class RegistComponent implements OnInit {
 
 
  
-  signUp(form: FormGroup){
-    console.log(form.value)
-    this.sendSignupform = form.value
-    this.f = form.value.Text
- 
-    this.authService.registerUser(this.sendSignupform).subscribe((res)=>{
-      alert("registrer succsesfully")
-      this.router.navigateByUrl('/login')
-      console.log(res)
-      this.signupForm.reset()
-      console.log(form)
-
-  },(err) =>{
-    alert("login failed: " + err.statusText + ". try again")
-    this.signupForm.reset()
-    console.log(err)
-
-
-  })
-
-
+  signUp(form: FormGroup) {
+    console.log(form.value);
+    this.sendSignupform = form.value;
+    this.f = form.value.Text;
   
+    this.authService.registerUser(this.sendSignupform).subscribe(
+      (res) => {
+        alert("registrer succsesfully");
+        this.router.navigateByUrl("/login");
+        console.log(res);
+        this.signupForm.reset();
+        console.log(form);
+      },
+      (err) => {
+        if (err.status === 400 && err.error.error === "Email already registered") {
+          alert("Registration failed: Email already registered.");}
+
+        else if (err.status === 400 && err.error.error === "Username already taken") {
+            alert("Registration failed: Username already taken.");
+
+        } else {
+          alert("Registration failed: " + err.statusText + ". try again");
+        }
+        this.signupForm.reset();
+        console.log(err);
+      }
+    );
   }
 
 
@@ -78,18 +82,3 @@ export class RegistComponent implements OnInit {
 
 
 
-  // signUp(form: FormGroup){
-  //   console.log(form.value)
-  //   this.sendSignupform = form.value
-  //   this.f = form.value.Text
-  //   this.httpClient.post("http://127.0.0.1:8041/registration", this.sendSignupform).subscribe((res)=> {
-  //     alert("registrer succsesfully")
-  //     this.router.navigateByUrl('/login')
-
-  //     console.log(res)
-  //     this.signupForm.reset()
-  // })
-
-
-  
-  // }

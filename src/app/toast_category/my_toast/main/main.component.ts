@@ -48,7 +48,6 @@ export class MainComponent implements OnInit {
         'Authorization': `Bearer ${token}`
       });
     
-      // const reversedPage = this.totalPages - this.currentPage + 1;
 
   
       const params = new HttpParams()
