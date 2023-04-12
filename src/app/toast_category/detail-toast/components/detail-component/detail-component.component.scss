@@ -66,3 +66,10 @@ mat-card {
 .mat-card {
   max-width: 100%;
 }
+
+.highlight-background {
+  background-color: black;
+  display: inline-flex;
+  border-radius: 50%;
+  padding: 2px;
+}

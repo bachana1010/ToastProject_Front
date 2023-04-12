@@ -3,23 +3,48 @@
     <mat-card-title>{{ printData?.title }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
+
     <div class="toast-details">
       <div class="toast-image">
         <img *ngIf="printData?.img" [src]="getImgUrl(printData.img)" alt="Toast" />
       </div>
       <div class="toast-content">
         <p>{{ printData?.content }}</p>
+
         <div class="toast-actions">
-          <button mat-icon-button color="primary">
+          
+          <!-- <button mat-icon-button color="primary">
             <mat-icon>thumb_up</mat-icon>
-          </button>
-          <button mat-icon-button color="warn">
+          </button> -->
+
+          <!-- <button mat-icon-button color="warn">
             <mat-icon>thumb_down</mat-icon>
-          </button>
-          <span>Seen {{ printData?.views }} times</span>
+          </button> -->
+          <!-- <span>Seen {{ printData?.views }} times</span> -->
+
         </div>
       </div>
     </div>
+
+    <div class="toast-actions">
+      <button mat-icon-button color="primary" (click)="toggleLikeContent(printData?.id)">
+        <div *ngIf="printData?.status === 'like'" class="highlight-background">
+          <mat-icon>thumb_up</mat-icon>
+        </div>
+        <mat-icon *ngIf="printData?.status !== 'like'">thumb_up</mat-icon>
+      </button>
+      <span>{{ printData?.likes }}</span>
+      <button mat-icon-button color="warn" (click)="toggleDislikeContent(printData?.id)">
+        <div *ngIf="printData?.status === 'dislike'" class="highlight-background">
+          <mat-icon>thumb_down</mat-icon>
+        </div>
+        <mat-icon *ngIf="printData?.status !== 'dislike'">thumb_down</mat-icon>
+      </button>
+      <span>{{ printData?.dislikes }}</span>
+      <span>Seen {{ printData?.views }} times</span>
+    </div>
+
+
   </mat-card-content>
 
   

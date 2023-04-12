@@ -1,0 +1,91 @@
+  
+        <div class="masthead">
+            <div class="container">
+      
+                <div class="row">
+    
+                  <div class="col-md-6">
+                    
+                    <div class="card">
+                        
+                      
+                      <div class="text-center">
+                      </div>
+    
+                      <div>
+
+                      </div>
+                      <div>
+                        <!-- <img [src]="url" height="100" alt="photo" id="toast_img"> -->
+                        <img *ngIf="url" [src]="url" height="100" alt="photo" class="preview-image" />
+
+                      </div>
+    
+              
+                      <form #serverContent [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
+                        <div>
+                          <label>
+                            <input #serverContent  formControlName="title" placeholder="title" class="form-control" [(ngModel)]="DataForUpdate.title">
+                          </label>
+                        </div>
+                        <div>
+                          <label>
+                            <textarea cols="29" rows = "7" class ="tesxt-area" formControlName="content" class="textarea" placeholder="content" [(ngModel)]="DataForUpdate.content"></textarea>
+                        </label>
+                        </div>
+    
+                        <div>
+    
+                          <label>
+                            <input formControlName="image" placeholder="image" class="form-control" type="file" (change)="onselectFile($event)" enctype='multipart/form-data'>
+                          </label>
+                        </div>
+                    
+                        <div>
+                          <mat-form-field class="example-chip-list" appearance="fill">
+                            <mat-label>Favorite Fruits</mat-label>
+                            <mat-chip-list #chipGrid aria-label="Fruit selection">
+                              <mat-chip *ngFor="let fruit of fruits" (removed)="remove(fruit)" >
+                                {{fruit}}
+                                <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                                  <mat-icon>cancel</mat-icon>
+                                </button>
+                              </mat-chip>
+                            </mat-chip-list>
+                            <input placeholder="New Fruit..." #fruitInput
+                              [matChipInputFor]="chipGrid" [matAutocomplete]="auto"
+                              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                              (matChipInputTokenEnd)="add($event)"/>
+                            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                              <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                                {{fruit}}
+                              </mat-option>
+                            </mat-autocomplete>
+                          </mat-form-field>
+                          </div>
+                    
+                     
+                    
+                          
+                    
+                    
+                        <button type="submit" class="btn btn-primary mb-2">Update</button>
+                      </form>
+    
+                      
+                
+    
+                      
+                  
+                     </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+    
+             
+      
+      
+    
+    
+      

@@ -42,7 +42,7 @@ export class AuthService {
 
   }
   Update_user(requestOptions: any, form:any){
-    return this.http.post(this.endpoint + "/update", form, requestOptions)
+    return this.http.post(this.endpoint + "/updateUser", form, requestOptions)
 
 
   }

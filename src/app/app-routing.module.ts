@@ -22,7 +22,7 @@ const routes: Routes = [
   },
   {
     path: "update",
-    loadChildren: () => import ('./toast_category/update-toast/update-toast.module').then(item => item.UpdateToastModule)
+    loadChildren: () => import('./toast_category/toast-update/toast-update.module').then(item => item.ToastUpdateModule),
   },
   {
     path: "login",

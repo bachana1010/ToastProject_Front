@@ -14,11 +14,12 @@ import {MatChipsModule} from '@angular/material/chips';
 import { DialogComponent } from './dialog/dialog.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -26,7 +27,9 @@ import { MatDialogModule } from '@angular/material/dialog';
     HttpClientModule,
     BrowserAnimationsModule,
     MatChipsModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
+
 
   ],
   providers: [CookieService, AuthGuard, AuthService, NgEventBus],

@@ -178,6 +178,10 @@ console.log(`Params:`, params);
   }
 
 
+  navigateToUpdate(toastId: number): void {
+    console.log('navigateToUpdate called with id:', toastId);
+    this.router.navigate(['/update', toastId]);
+  }
   
 }
     
@@ -186,16 +190,3 @@ console.log(`Params:`, params);
 
 
 
-
-  // openDeleteDialog(id: any): void {
-  //   const dialogRef = this.dialog.open(DialogComponent, {
-  //     width: '250px',
-  //     data: { message: 'Are you sure you want to delete this toast?' }
-  //   });
-  
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this.deleteToast(id);
-  //     }
-  //   });
-  // }

@@ -1,0 +1,93 @@
+.example-chip-list {
+    width: 100%;
+    margin-top: 20px;
+  }
+  
+  .masthead{
+    background: radial-gradient( circle 759px at -6.7% 50%, rgba(80,131,73,1) 0%, rgba(140,209,131,1) 26.2%, rgba(178,231,170,1) 50.6%, rgba(144,213,135,1) 74.1%, rgba(75,118,69,1) 100.3% );;
+  }
+  
+  .success-snackbar {
+    background-color: #4caf50; // green color for success
+    color: #ffffff;
+  }
+  
+  .error-snackbar{
+    background-color: #f44336; // red color for error
+    margin-top: 100px;
+    color: #ffffff;
+  }
+  
+  
+  .card{
+      border: 1px solid whitesmoke;
+      width: 500px;
+      height: 600px;
+      padding: 20px;
+      position: absolute;
+      top: 2%;
+      left: 50%;
+      transform: translate(-50%,50%);
+      background: transparent;
+      box-shadow: inset -5px -5px  linear-gradient(5535deg, #757f9a,#d7dde8);
+      }
+      
+      .card h1, h6{
+        color: whitesmoke
+      }
+      .textarea{
+        background-color: transparent;
+        border: 1px solid rebeccapurple;
+        margin-top: 20px
+  
+      }
+      label {
+        color: whitesmoke
+      }
+      
+      ::placeholder{
+        color:aqua
+      }
+      .btn{
+        background-color: whitesmoke;
+        color:black;
+        margin-top: 50px;
+        margin-left: 100px;
+        width:200px
+      
+      }
+      
+      .btn:hover{
+        color: greenyellow;
+      }
+      
+      .form-control{
+        background-color: transparent;
+        border: 1px solid rebeccapurple;
+        color: rebeccapurple; 
+        font-size: 1.25rem;
+                font-weight: lighter;
+                border: 1px solid rebeccapurple;
+                margin-bottom: 1px;
+                margin-top: 10px;
+  
+        
+      }
+      
+      #question-login{
+        color:white;
+        margin-left:120px
+      }
+      #question-login:hover{
+        color: greenyellow; 
+      
+      }
+      
+      // #toast_img{
+      //   display: none;
+      // }
+  
+    .succsesfully-message{
+      color:greenyellow;
+      display: inline-block;
+    }

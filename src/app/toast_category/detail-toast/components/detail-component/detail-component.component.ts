@@ -100,6 +100,31 @@ getImgUrl(img: string): SafeUrl {
   return this.sanitizer.bypassSecurityTrustUrl(dataUrl);
 }
 
+toggleLikeContent(contentId: number) {
+  const token = localStorage.getItem('Authorization');
+// Set the headers with the token
+const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+  this.httpClient.post<{likes: number, dislikes: number,status: string}>(`http://127.0.0.1:8040/toggle-like/${contentId}`, {}, {headers}).subscribe(response => {
+    this.printData.likes = response.likes;
+    this.printData.dislikes = response.dislikes;
+    this.printData.status = response.status;
+
+  });
+}
+
+toggleDislikeContent(contentId: number) {
+  const token = localStorage.getItem('Authorization');
+// Set the headers with the token
+const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);  
+this.httpClient.post<{likes: number, dislikes: number,status: string}>(`http://127.0.0.1:8040/toggle-dislike/${contentId}`, {}, {headers}).subscribe(response => {
+    this.printData.likes = response.likes;
+    this.printData.dislikes = response.dislikes;
+    this.printData.status = response.status;
+
+  });
+}
+
 }
 
 
