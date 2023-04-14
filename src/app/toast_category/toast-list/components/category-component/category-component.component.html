@@ -29,7 +29,10 @@
         <a [routerLink]="['/details/',item.id]">detail</a>
 </div>
 
+
+
 <button *ngIf="item.user_id === userId" (click)="navigateToUpdate(item.id)">Update</button>
+<button (click)="downloadQRCode(item.id)">Download QR Code</button>
 
     </div>
 

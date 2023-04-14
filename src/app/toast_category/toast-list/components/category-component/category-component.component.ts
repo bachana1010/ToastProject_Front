@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { saveAs } from 'file-saver';
+import { Location } from '@angular/common';
 
 
 
@@ -40,7 +42,8 @@ export class CategoryComponentComponent implements OnInit {
                 private sanitizer: DomSanitizer,
                 private route: ActivatedRoute,
                 private router: Router,
-                public dialog: MatDialog 
+                public dialog: MatDialog,
+                private location: Location
                 
                 ) { }
 
@@ -53,6 +56,19 @@ console.log(`Params:`, params);
  
    
   })}
+
+
+  downloadQRCode(itemId: number) {
+    const currentDomain = window.location.protocol + '//' + window.location.host;
+    const detailsUrl = this.location.prepareExternalUrl(`/details/${itemId}`);
+    const qrCodeUrl = `http://127.0.0.1:8040/generate_qr_code/${currentDomain}${detailsUrl}`;
+    
+    this.httpClient.get(qrCodeUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
+      saveAs(blob, `QR_Code_${itemId}.png`);
+    });
+  }
+
+
 
   getImgUrl(img: string): SafeUrl {
     const dataUrl = `data:image/jpeg;base64,${img}`;
