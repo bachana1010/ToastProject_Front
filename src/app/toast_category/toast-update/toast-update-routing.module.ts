@@ -4,7 +4,7 @@ import { UpdateToastComponent } from './update-toast/update-toast.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: UpdateToastComponent,
   },
 ];

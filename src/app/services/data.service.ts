@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,14 @@ export class DataService {
 
   }
 
+  updateToast(id: number, formData: FormData): Observable<any> {
+    const token = localStorage.getItem('Authorization');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  
+    return this.http.post<any>(`${this.endpoint}/update/${id}`, formData, { headers });
+  }
   
   setLocalStorage(information: any, name: any){
     return localStorage.setItem(name, information)
