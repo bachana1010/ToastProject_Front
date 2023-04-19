@@ -9,6 +9,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import {MatChipsModule} from '@angular/material/chips';
 import { ReversePipe } from './reverse.pipe';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ReversePipe } from './reverse.pipe';
     NgxPaginationModule,
     HttpClientModule,
     MatChipsModule,
+    MatIconModule
   ]
   
 })

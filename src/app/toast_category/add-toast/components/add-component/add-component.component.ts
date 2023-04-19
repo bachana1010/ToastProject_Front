@@ -151,7 +151,7 @@ export class AddComponentComponent implements OnInit {
 
     formData.append('sendform', this.sendform);
 
-    this.user_id = localStorage.getItem('ID')
+    this.user_id = localStorage.getItem('user_id')
 
     if (this.user_id) {
     this.formData.set('photo', this.selectedFile);

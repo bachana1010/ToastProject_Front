@@ -15,12 +15,15 @@ import { DialogComponent } from './dialog/dialog.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FooterComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
-  ],
+    HeaderComponent,
+    FooterComponent
+ ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -28,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MatChipsModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
 
 
   ],

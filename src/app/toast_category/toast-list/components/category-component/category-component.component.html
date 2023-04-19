@@ -1,47 +1,52 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-<div class="masthead">
-  <div class="cards-container">
-
-  <div *ngFor="let item of toasts" class="meore">
-
-    <div class="card" style="width: 18rem;">
-      <img [src]="getImgUrl(item.img)" />
-
-
-      <div class="card-body">
-        <h5 class="card-title">    {{ item.content }}
-        </h5>
+<div class="container mt-5 mb-5">
+  <div class="row">
+    <div class="col-lg-4" *ngFor="let item of toasts">
+      <div class="foodbox mt-3 mb-3">
+        <img [src]="getImgUrl(item.img)" [routerLink]="['/details/', item.id]">
+        <mat-chip-list>
+          <mat-chip *ngFor="let chip of item.input">
+            <mat-icon>favorite</mat-icon> <!-- Add the desired icon -->
+            {{ chip }}</mat-chip>
+        </mat-chip-list>
+        <br />
         <p class="card-text">    {{ item.title}}
         </p>
 
+        <div class="buttons-container">
+          <a class="buybtn details-btn" [routerLink]="['/details/', item.id]" title="Details">
+            <i class="fas fa-info-circle"></i> 
+          </a>
 
-        <mat-chip-list>
-          <mat-chip *ngFor="let chip of item.input">
+          <button *ngIf="item.user_id === userId" (click)="openConfirmationDialog(item.id)" class="delete-btn" title="Delete">
+            <i class="fas fa-trash"></i> 
+          </button>
 
-            {{ chip }}
-          
-          </mat-chip>
-        </mat-chip-list>
+          <button *ngIf="item.user_id === userId" (click)="navigateToUpdate(item.id)" class="update-btn" title="Update">
+            <i class="fas fa-pencil-alt"></i> 
+          </button>
+
+          <button (click)="downloadQRCode(item.id)" class="qr-download-btn" title="QR-Code">
+            <i class="fas fa-download"></i> 
+          </button>
+
+          <span class="views">
+            <i class="fas fa-eye"></i>
+            {{ item.views }}
+          </span>
+        </div>
+
         
       </div>
-      <button *ngIf="item.user_id === userId" (click)="openConfirmationDialog(item.id)">delete</button>
-      <div class="author">
-        <a [routerLink]="['/details/',item.id]">detail</a>
+    </div>
+  </div>
+
+  <div class="pagination">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span *ngFor="let pageNumber of getPageNumbers()" [class.active]="pageNumber === currentPage">
+      <a class="page-number" (click)="goToPage(pageNumber)" [routerLink]="[]" [queryParams]="{page: pageNumber}">{{ pageNumber }}</a>
+    </span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
 </div>
-
-
-
-<button *ngIf="item.user_id === userId" (click)="navigateToUpdate(item.id)">Update</button>
-<button (click)="downloadQRCode(item.id)">Download QR Code</button>
-
-    </div>
-
-    </div>
-
-    <div class="pagination">
-      <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-      <span *ngFor="let pageNumber of getPageNumbers()" [class.active]="pageNumber === currentPage">
-        <a class="page-number" (click)="goToPage(pageNumber)" [routerLink]="[]" [queryParams]="{page: pageNumber}">{{ pageNumber }}</a>
-      </span>
-      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-    </div>

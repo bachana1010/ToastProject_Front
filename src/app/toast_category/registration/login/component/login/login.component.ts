@@ -57,8 +57,12 @@ export class LoginComponent implements OnInit, OnChanges {
         console.log('res',res)
         let InformationToken = res.token
         let user = res.user
+        let userId = user.id; // Get user_id from the response
+
 
         localStorage.setItem('Authorization',InformationToken)
+        localStorage.setItem('user_id', userId); // Store user_id in local storage
+
         
         this.eventBus.cast('loginSuccessfully',user);
         
@@ -66,6 +70,7 @@ export class LoginComponent implements OnInit, OnChanges {
         this.router.navigateByUrl('/profile')
         this.loginForm.reset()
         this.setCookie(res.tokeni)
+
 
   
   },(err) =>{

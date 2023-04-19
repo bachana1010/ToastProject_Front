@@ -1,13 +1,23 @@
+
 mat-card {
   max-width: 960px;
   margin: 1rem auto;
   padding: 1rem;
+  background-color: #FFE5B4; // Add this line to set the background color
+}
+
+
+
+.add-comment-button {
+  background-color: #636FA4;
+  color: #fff; // Set the text color to white or any color you prefer
 }
 
 .toast-details {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+
 }
 
 .toast-image {
@@ -61,6 +71,8 @@ mat-card {
 .comment-input {
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px; // Add a margin-bottom to create space between the button and the comment section
+
 }
 
 .mat-card {
@@ -72,4 +84,31 @@ mat-card {
   display: inline-flex;
   border-radius: 50%;
   padding: 2px;
+}
+
+.comments {
+  background-color: #F0F0F0; // Add a background color to separate each comment
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+.comment-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.comment-author {
+  font-weight: bold; // Style the author name
+  color: #333;
+}
+
+.comment-date {
+  font-style: italic; // Style the comment date
+  color: #777;
+}
+
+.comment-content {
+  margin: 0; // Remove the default margin of the paragraph
 }

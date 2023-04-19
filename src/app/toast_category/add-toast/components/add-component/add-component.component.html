@@ -18,21 +18,20 @@
 
           
                   <form #serverContent [formGroup]="myForm" (ngSubmit)="onSubmit(myForm)">
-                    <div>
+                    <div class="input-wrapper">
                       <label>
-                        <input #serverContent  formControlName="title" placeholder="title" class="form-control">
+                        <input #serverContent formControlName="title" placeholder="title" class="form-control">
+                      </label>
+                    </div> 
+                    <div class="input-wrapper">
+                      <label>
+                        <textarea cols="29" rows="7" class="textarea" formControlName="content" placeholder="content"></textarea>
                       </label>
                     </div>
-                    <div>
-                      <label>
-                        <textarea cols="29" rows = "7" class ="tesxt-area" formControlName="content" class="textarea" placeholder="content"></textarea>
-                    </label>
-                    </div>
-
-                    <div>
-
-                      <label>
-                        <input formControlName="image" placeholder="image" class="form-control" type="file" (change)="onselectFile($event)" enctype='multipart/form-data'>
+                    <div class="input-wrapper">
+                      <label class="file-label">
+                        Choose File
+                        <input formControlName="image" class="form-control-file" type="file" (change)="onselectFile($event)" enctype='multipart/form-data'>
                       </label>
                     </div>
                 

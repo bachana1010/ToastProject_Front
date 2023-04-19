@@ -25,7 +25,7 @@ export class CategoryComponentComponent implements OnInit {
   data: any[] = [];
   currentPage = 1;
   totalPages = 1;
-  perPage = 2;
+  perPage = 3;
   imageData: string;
   fruits: any[];
   inputs: any

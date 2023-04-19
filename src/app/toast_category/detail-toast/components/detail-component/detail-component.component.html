@@ -13,18 +13,13 @@
 
         <div class="toast-actions">
           
-          <!-- <button mat-icon-button color="primary">
-            <mat-icon>thumb_up</mat-icon>
-          </button> -->
-
-          <!-- <button mat-icon-button color="warn">
-            <mat-icon>thumb_down</mat-icon>
-          </button> -->
-          <!-- <span>Seen {{ printData?.views }} times</span> -->
+      
 
         </div>
       </div>
     </div>
+
+    
 
     <div class="toast-actions">
       <button mat-icon-button color="primary" (click)="toggleLikeContent(printData?.id)">
@@ -55,14 +50,17 @@
         <mat-label>Input your comment</mat-label>
         <input matInput placeholder="Enter your comment" [(ngModel)]="newComment"/>
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="addComment(newComment)">Add Comment</button>
+      <button mat-raised-button color="primary" class="add-comment-button" (click)="addComment(newComment)">Add Comment</button>
     </div>
+
     <div class="comments" *ngFor="let comment of comments">
-      <p>{{ comment.content }}</p>
-      <small>
-        {{ comment.user_name }} - {{ comment.timestamp | date: "medium" }}
-      </small>
+      <div class="comment-meta">
+        <span class="comment-author">{{ comment.user_name }}</span>
+        <span class="comment-date">{{ comment.timestamp | date: "medium" }}</span>
+      </div>
+      <p class="comment-content">{{ comment.content }}</p>
     </div>
+
   </mat-card-content>
 </ng-container>
 </mat-card>

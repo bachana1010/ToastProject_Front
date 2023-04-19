@@ -1,0 +1,29 @@
+
+<div class="masthead">
+  <div class="background">
+      <div class="shape"></div>
+      <div class="shape"></div>
+  </div>
+
+  <form [formGroup]="updateForm" (ngSubmit)="onSubmitUpdate(updateForm)">
+    <h1 class="update-title">Update</h1>
+
+    <div class="form-group">
+      <label class="emailAddress1" >username</label>
+      <input formControlName="username" type="username" class="form-control" id="exampleInputPassword1" [(ngModel)]="DataForUpdate.username">
+    </div>
+    
+    <div class="form-group">
+      <label for="exampleInputEmail1" class="emailAddress1">Email address</label>
+      <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="DataForUpdate.email">
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputPassword1" class="exampleInputPassword1">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1">
+    </div>
+
+    <button type="submit" class="loginbutton">update</button>
+  </form>
+
+</div>

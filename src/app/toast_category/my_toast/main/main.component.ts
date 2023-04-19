@@ -2,6 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpParams,HttpHeaders } from '@angular/common/http';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { Location } from '@angular/common';
+import { saveAs } from 'file-saver';
+import { DialogComponent } from 'src/app/dialog/dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+
+
+
 
 @Component({
   selector: 'app-main',
@@ -12,7 +20,7 @@ export class MainComponent implements OnInit {
   data: any[] = [];
   currentPage = 1;
   totalPages = 1;
-  perPage = 2;
+  perPage = 3;
   imageData: string;
   toast_chips: any[];
   inputs: any
@@ -25,14 +33,22 @@ export class MainComponent implements OnInit {
   constructor(private httpClient: HttpClient,
     private sanitizer: DomSanitizer,
     private route: ActivatedRoute,
-    private router: Router
-    ) { }
+    private router: Router,
+    public dialog: MatDialog,
+    private location: Location // add this line
+
+
+    ) {
+      console.log('UpdateProfileComponent created');
+
+     }
 
     ngOnInit(): void {
       this.route.queryParams.subscribe(params => {
         const page = params['page'] ? parseInt(params['page'], 10) : 1;
         this.loadData(page);
-   
+        this.userId = localStorage.getItem('user_id'); // Get user_id from local storage
+
      
     })}
 
@@ -102,8 +118,8 @@ export class MainComponent implements OnInit {
           obj.input = JSON.parse(obj.input);
           this.userId = obj.user_id;
         });
-        localStorage.setItem('user_id', this.userId);
-        this.userId = Number(localStorage.getItem('ID'));
+        // localStorage.setItem('user_id', this.userId);
+        // this.userId = Number(localStorage.getItem('ID'));
     
         console.log("user id:", this.userId);
     
@@ -145,6 +161,7 @@ export class MainComponent implements OnInit {
           error => {
             console.error(error);
           }
+          
         );
 
 
@@ -154,4 +171,30 @@ export class MainComponent implements OnInit {
 
 
 
+}
+openConfirmationDialog(id: number): void {
+  const dialogRef = this.dialog.open(DialogComponent, {
+    data: { message: 'Are you sure you want to delete this toast?' },
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result === true) {
+      this.deleteToast(id);
+    }
+  });
+}
+downloadQRCode(itemId: number) {
+  const currentDomain = window.location.protocol + '//' + window.location.host;
+  const detailsUrl = this.location.prepareExternalUrl(`/details/${itemId}`);
+  const qrCodeUrl = `http://127.0.0.1:8040/generate_qr_code/${currentDomain}${detailsUrl}`;
+
+  this.httpClient.get(qrCodeUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
+    saveAs(blob, `QR_Code_${itemId}.png`);
+  });
+}
+
+
+navigateToUpdate(toastId: number): void {
+  console.log('navigateToUpdate called with id:', toastId);
+  this.router.navigate(['/update', toastId]);
 }}

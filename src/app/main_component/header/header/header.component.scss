@@ -1,4 +1,132 @@
-.nav-link{
-    color: blue
+$navbar-color: #c7633b;
+
+
+
+.nav-link {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: $navbar-color;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  color: $navbar-color
+
 }
 
+
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link {
+    transition: none;
+  }
+}
+.nav-item {
+  padding: 0 0.5rem; // Add padding to separate texts
+}
+
+.navbar {
+  background-color: rgba(243,235,222,255)
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding: 0.3125rem;
+  background: linear-gradient(to right, $navbar-color, #f59222);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.nav-link:hover,
+.nav-link:focus {
+  color: #757f9a;
+}
+
+.nav-link.disabled {
+  color: #fd874d;
+  pointer-events: none;
+  cursor: default;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tabs .nav-link {
+  margin-bottom: -1px;
+  background: none;
+  border: 1px solid transparent;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+  border-color: #e9ecef #e9ecef #dee2e6;
+  isolation: isolate;
+}
+
+.nav-tabs .nav-link.disabled {
+  color: #fd874d;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #fd874d;
+  background-color: #fff;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.nav-tabs .dropdown-menu {
+  margin-top: -1px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.nav-pills .nav-link {
+  background: none;
+  border: 0;
+  border-radius: 0.25rem;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: $navbar-color;
+}
+
+.nav-fill > .nav-link,
+.nav-fill .nav-item {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.nav-justified > .nav-link,
+.nav-justified .nav-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.nav-fill .nav-item .nav-link,
+.nav-justified .nav-item .nav-link {
+  width: 100%;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+
+.tab-content > .active {
+  display: block;
+}
+
+.toastmaster{
+  background:  linear-gradient(to right, $navbar-color, #f59222) !important;
+}
+
+.navbar-brand {
+  display: inline-block;
+  padding: 0.3125rem;
+  background: linear-gradient(to right, $navbar-color, #f59222);
+  -webkit-background-clip: text;
+  color: transparent;
+}

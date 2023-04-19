@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
+  {
+    path:"menu",
+    component: MenuComponent
+  },
   
   {
     path: "",
@@ -38,6 +43,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
+  {
+    path: "updateUser",
+    loadChildren: () => import ('./toast_category/registration/update-user/update-user.module').then(item => item.UpdateUserModule),
+    // canActivate: [AuthGuard]
+  },
   {
     path: "MyToast",
     loadChildren: () => import ('./toast_category/my_toast/my-toast.module').then(item => item.MyToastModule),
