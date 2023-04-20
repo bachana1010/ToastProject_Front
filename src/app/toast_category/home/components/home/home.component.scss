@@ -1,0 +1,171 @@
+$animation1: back 1s infinite;
+$animation2: color 1200ms infinite;
+
+.contain {
+  margin: 50px auto;
+  width: 350px;
+  display: flex;
+}
+
+.grapes1 .circ1 {
+  transform: translateY(50px);
+  animation: back 1s infinite;
+}
+
+.grapes1 .circ2 {
+  transform: translateY(30px);
+  animation: $animation1;
+}
+
+.grapes1 .circ3 {
+  transform: translateY(20px) translateX(-40px);
+  animation: $animation1;
+}
+
+.grapes1 .circ4 {
+  transform: translateX(-20px) translateY(-60px);
+  animation: $animation1;
+}
+
+.grapes1 .circ5 {
+  transform: translateX(50px) translateY(10px);
+  animation: $animation1;
+}
+
+.grapes1 .circ6 {
+  transform: translateX(40px) translateY(60px);
+  animation: $animation1;
+}
+
+.grapes1 .circ7 {
+  transform: translateX(10px) translateY(40px);
+  animation: $animation1;
+}
+
+.grapes1 .circ8 {
+  transform: translateX(-30px) translateY(50px);
+  animation: $animation1;
+}
+
+.grapes1 .circ9 {
+  transform: translateX(50px) translateY(40px);
+  animation: $animation1;
+}
+
+.grapes1 .circ10 {
+  transform: translateX(-20px) translateY(20px);
+  animation: $animation1;
+}
+
+.grapes1 .circ11 {
+  transform: translateX(-20px) translateY(-40px);
+  animation: $animation1;
+}
+
+.grapes1 .circ12 {
+  transform: translateX(-40px) translateY(-60px);
+  animation: $animation1;
+}
+
+.grapes1 .circ13 {
+  transform: translateX(40px) translateY(-80px);
+  animation: $animation1;
+}
+
+.grapes2 .circ1 {
+  animation: $animation2;
+}
+
+.grapes2 .circ2 {
+  animation: $animation2;
+  animation-delay: 100ms;
+}
+
+.grapes2 .circ3 {
+  animation: $animation2;
+  animation-delay: 200ms;
+}
+
+.grapes2 .circ4 {
+  animation: $animation2;
+  animation-delay: 1100ms;
+}
+
+.grapes2 .circ5 {
+  animation: $animation2;
+  animation-delay: 300ms;
+}
+
+.grapes2 .circ6 {
+  animation: $animation2;
+  animation-delay: 400ms;
+}
+
+.grapes2 .circ7 {
+  animation: $animation2;
+  animation-delay: 500ms;
+}
+
+.grapes2 .circ8 {
+  animation: $animation2;
+  animation-delay: 600ms;
+}
+
+.grapes2 .circ9 {
+  animation: $animation2;
+  animation-delay: 600ms;
+}
+
+.grapes2 .circ10 {
+  animation: $animation2;
+  animation-delay: 700ms;
+}
+
+.grapes2 .circ11 {
+  animation: $animation2;
+  animation-delay: 800ms;
+}
+
+.grapes2 .circ12 {
+  animation: $animation2;
+  animation-delay: 1000ms;
+}
+
+.grapes2 .circ13 {
+  animation: $animation2;
+  animation-delay: 900ms;
+}
+
+@keyframes back {
+  45% {
+    transform: translateY(0);
+    fill: #6252BA;
+    stroke-width: 4px;
+    stroke-dasharray: 8px;
+    stroke-linecap: round;
+    stroke: #0D4AB5;
+  }
+  55% {
+    transform: translateY(0);
+    fill: #6252BA;
+    stroke-width: 2px;
+    stroke-dasharray: 4px;
+    stroke-linecap: round;
+    stroke: #3826A3;
+  }
+}
+
+@keyframes color {
+  to {
+    fill: purple;
+  }
+}
+
+.svg-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust this value according to your needs */
+    width: 100%;
+  }
+  

@@ -184,8 +184,9 @@ console.log(`Params:`, params);
       obj.input = JSON.parse(obj.input);
       this.userId = obj.user_id;
     });
-    localStorage.setItem('user_id', this.userId);
-    this.userId = Number(localStorage.getItem('ID'));
+    // localStorage.setItem('user_idaffaa', this.userId);
+    this.userId = Number(localStorage.getItem('user_id'));
+
 
     console.log("user id:", this.userId);
 

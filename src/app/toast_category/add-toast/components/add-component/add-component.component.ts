@@ -27,7 +27,7 @@ export class AddComponentComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
   filteredFruits: Observable<string[]>;
-  fruits: string[] = [''];
+  fruits: string[] = [];
   allFruits: string[] = ['samshoblo', 'mshvidoba', 'samich'];
   formData: FormData = new FormData();
   img_block = false

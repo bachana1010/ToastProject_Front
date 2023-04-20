@@ -19,7 +19,7 @@
             <i class="fas fa-info-circle"></i> 
           </a>
 
-          <button *ngIf="item.user_id === userId" (click)="openConfirmationDialog(item.id)" class="delete-btn" title="Delete">
+          <button *ngIf="item.user_id == userId" (click)="openConfirmationDialog(item.id)" class="delete-btn" title="Delete">
             <i class="fas fa-trash"></i> 
           </button>
 

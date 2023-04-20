@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { FormControl } from '@angular/forms';
@@ -14,7 +14,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-update-toast',
   templateUrl: './update-toast.component.html',
-  styleUrls: ['./update-toast.component.scss']
+  styleUrls: ['./update-toast.component.scss'],
+  encapsulation: ViewEncapsulation.None, // Add this line
+
 })
 export class UpdateToastComponent implements OnInit {
   separatorKeysCodes: number[] = [ENTER, COMMA];

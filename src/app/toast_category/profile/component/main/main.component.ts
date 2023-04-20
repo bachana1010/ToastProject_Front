@@ -13,18 +13,40 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  userNameprofile: any
+  totalViews: any
+  totalLikes: any
+  numberOfToast: any
 
 
+  constructor(  private dataservie: DataService,
+                private httpClient : HttpClient
 
-
-
-  constructor(  
-    
     ) { }
 
   ngOnInit(): void {
+    this.userNameprofile = this.dataservie.getLocalStorage("username")
+    this.getInformation()
     
   }
+
+  getInformation(): void {
+
+    const token = localStorage.getItem('Authorization');
+      const headers = new HttpHeaders({
+        'Authorization': `Bearer ${token}`
+      });
+    
+    this.httpClient.get<any>('http://127.0.0.1:8040/MyToast', {headers })
+    .subscribe(response => {
+      this.totalLikes = response.total_likes
+      this.totalViews = response.total_views
+      this.numberOfToast = response.number_of_toasts
+    });
+
+  }
+
+  
 
 
 

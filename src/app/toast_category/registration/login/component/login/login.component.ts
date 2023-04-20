@@ -54,14 +54,16 @@ export class LoginComponent implements OnInit, OnChanges {
 
         alert("logined succsesfully")
         this.isAuthorized = true
-        console.log('res',res)
+        console.log('resiii',res)
         let InformationToken = res.token
         let user = res.user
         let userId = user.id; // Get user_id from the response
-
+        let userName = user.username
 
         localStorage.setItem('Authorization',InformationToken)
         localStorage.setItem('user_id', userId); // Store user_id in local storage
+        localStorage.setItem('username', userName); // Store user_id in local storage
+
 
         
         this.eventBus.cast('loginSuccessfully',user);
@@ -94,26 +96,5 @@ export class LoginComponent implements OnInit, OnChanges {
 
 
   
-// onSubmit(form: FormGroup){
-//   this.sendLoginform = form.value
-//   this.httpClient.post("http://127.0.0.1:8041/login", this.sendLoginform).subscribe((res:any)=> {
-//     if(res){
-//       alert("logined succsesfully")
-//       this.isAuthorized = true
-//       console.log('res',res)
-//       let userInformation = {'token': res.tokeni, 'username': res.username, 'email': res.email}
-//       let InformationToken = res.tokeni
-
-//       localStorage.setItem('Authorization',InformationToken)
-
-//       this.router.navigateByUrl('/profile')
-//       this.loginForm.reset()
-//       this.setCookie(res.tokeni)
-
-//     }
-
-// })
-
-// }
 
 

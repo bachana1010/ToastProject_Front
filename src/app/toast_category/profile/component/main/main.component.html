@@ -1,17 +1,46 @@
-<div class="container">
-    <div class="row">
-      <div class="col-md-12 text-center">
-        <h1>Welcome to the Main Page</h1>
-        <p>Select an action below:</p>
-      </div>
+
+   <div class="main-container">
+
+   <div class="container d-flex justify-content-center">
+    <div class="card p-3 py-4">
+        <div class="text-center"> 
+		<img [src]="'assets/avatar.jpg'" width="100" class="rounded-circle">
+            <h3 class="mt-2">{{userNameprofile}}</h3>
+			<span class="mt-1 clearfix">ToastMaster</span>
+			
+			<div class="row mt-3 mb-3">
+			
+			  <div class="col-md-4">
+				<h5>Number of toasts</h5>
+				<span class="num">{{numberOfToast}}</span>
+			  </div>
+			  <div class="col-md-4">
+			  <h5>Views</h5>
+				<span class="num">{{totalViews}}</span>
+			  </div>
+			  <div class="col-md-4">
+			  <h5>Likes</h5>
+				<span class="num">{{totalLikes}}</span>
+			  </div>
+			
+			</div>
+			
+			<hr class="line">
+			
+			<small class="mt-4">I have expertise in toast and would like to share my knowledge on this site
+
+
+
+      </small>
+      
+			 <div class="profile mt-5">
+        <button class="profile_button px-5" routerLink="/MyToast">My Toast</button>
+
+			 <button class="profile_button px-5" routerLink="/updateUser">Update User</button>
+
+		</div>
+			   
+        </div>
     </div>
-    <div class="row">
-      <div class="col-md-6 text-center">
-        <button class="btn btn-primary" routerLink="/MyToast">My Toast</button>
-      </div>
-      <div class="col-md-6 text-center">
-        <button class="btn btn-primary" routerLink="/updateUser">Update User</button>
-      </div>
-    </div>
+</div>
   </div>
-  

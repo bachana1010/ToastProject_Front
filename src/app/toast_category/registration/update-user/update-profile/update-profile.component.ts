@@ -22,6 +22,7 @@ export class UpdateProfileComponent implements OnInit {
   requestOptions = {}
   public DataForUpdate: any = {};
   information = ''
+  
 
 
 
@@ -60,7 +61,7 @@ export class UpdateProfileComponent implements OnInit {
     console.log(typeof(this.requestOptions))
     
 
-    this.httpClient.post('http://127.0.0.1:8040/update',form.value, this.requestOptions).subscribe((res)=> {
+    this.httpClient.post('http://127.0.0.1:8040/updateUser',form.value, this.requestOptions).subscribe((res)=> {
     this.updateForm.reset() 
     console.log(res)
     alert("updated succsesfully")
