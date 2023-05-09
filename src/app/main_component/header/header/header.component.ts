@@ -1,8 +1,9 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 import { NgEventBus } from 'ng-event-bus';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router, NavigationStart } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,36 +11,32 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public User: any = ''
-  requestOptions = {}
-  
+  public User: any = '';
+  requestOptions = {};
 
-  constructor( public authservice: AuthService,
+  constructor(
+    public authservice: AuthService,
     private eventBus: NgEventBus,
     private httpClient: HttpClient,
+    private router: Router
+  ) {}
 
-    ) { 
-      
-    }
-    
-
-  ngOnInit(): void { 
-
-    this.onSubmitUpdate()
-    this.eventBus.on('loginSuccessfully').subscribe((meta) => {
-      this.User = meta?.data?.username
-      console.log("es", meta?.data?.username, this.User)
+  ngOnInit(): void {
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        this.closeDropdown();
+      }
     });
-    
- 
   }
 
-  onSubmitUpdate(){
-    this.User = localStorage.getItem("username")
-
+  onSubmitUpdate() {
+    this.User = localStorage.getItem('username');
   }
 
-
- 
-  
+  closeDropdown() {
+    const navbar = document.querySelector('.navbar-collapse');
+    if (navbar && navbar.classList.contains('show')) {
+      navbar.classList.remove('show');
+    }
+  }
 }

@@ -1,4 +1,3 @@
-/* Add this at the top of your SCSS file */
 $background-color: #faf2e5;
 $primary-color: transparent;
 $secondary-color: transparent;
@@ -12,43 +11,63 @@ $btn-hover-color: #31546b;
 $new-form-background: #595c70;
 $input-width: 100%;
 
-
-
-
 .example-chip-list {
   width: 100%;
   margin-top: 20px;
 }
 
-.success-snackbar {
-  background-color: #4caf50; // green color for success
+.success-snackbar, .error-snackbar {
   color: $white-color;
 }
 
+.success-snackbar {
+  background-color: #4caf50;
+}
+
 .error-snackbar {
-  background-color: #f44336; // red color for error
+  background-color: #f44336;
   margin-top: 100px;
-  color: $white-color;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px); // Subtract the header height
+  padding: 1rem; // Add padding to avoid card sticking to the edges
+}
+
+@media (max-width: 767.98px) {
+  .card-container {
+    min-height: calc(100vh - 60px - 1rem);
+    padding: 1rem 0;
+  }
 }
 
 .card {
   border: 1px solid whitesmoke;
-  width: 500px;
-  height: auto; // Change fixed height to auto
+  width: 100%;
+  max-width: 500px;
+  height: auto;
   padding: 20px;
-  padding-bottom: 50px; // Add padding to the bottom of the card
-  position: absolute;
-  top: 45%; // Change this value to raise the card higher
-  left: 50%;
-  transform: translate(-50%, -50%); // Center the card vertically
+  padding-bottom: 50px;
   background: $card-color;
-  // box-shadow: inset -5px -5px linear-gradient(5535deg, #757f9a, #);
+  box-shadow: inset -5px -5px linear-gradient(5535deg, #757f9a, #d7dde8);
   border-radius: 10px;
-  box-shadow:  50px 30px 100px #757f9a, 
-               -20px -20px 60px #d7dde8;
+  box-sizing: border-box;
 }
 
+// Rest of the styles remain the same
 
+
+// Rest of the styles remain the same
 
 .card h1, h6 {
   color: whitesmoke;
@@ -70,8 +89,10 @@ label, ::placeholder {
   background-color: $btn-color;
   color: $white-color;
   margin-top: 50px;
-  margin-left: 100px;
   width: 200px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .btn:hover {
@@ -91,88 +112,10 @@ label, ::placeholder {
   caret-color: $white-color;
 }
 
-#question-login {
-  color: $white-color;
-  margin-left: 120px;
-}
-
-#question-login:hover {
-  color: greenyellow;
-}
-
-.succsesfully-message {
-  color: greenyellow;
-  display: inline-block;
-}
-
-
-.btn {
-  box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
-  padding: 1.25rem 2rem;
-  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 80%;
-  text-transform: uppercase;
-  letter-spacing: 0.15rem;
-  border: 0;
-  background-color: $btn-color;
-  color: $white-color;
-  margin-top: 50px;
-  width: 200px;
-  display: block; // Add this line
-  margin-left: auto; // Add this line
-  margin-right: auto; // Add this line
-}
-
-.masthead {
-  position: relative;
+.example-chip-list {
   width: 100%;
-  height: auto;
-  min-height: 35rem;
-  padding: 15rem 0;
-  // background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("../assets/img/bg-masthead.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll;
-  background-size: cover;
-  
+  margin-top: 20px;
 }
-.masthead h1, .masthead .h1 {
-  font-family: "Varela Round", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 2.5rem;
-  line-height: 2.5rem;
-  letter-spacing: 0.8rem;
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
-  -webkit-text-fill-color: transparent;
-  -webkit-background-clip: text;
-          background-clip: text;
-}
-.masthead h2, .masthead .h2 {
-  max-width: 20rem;
-  font-size: 1rem;
-}
-@media (min-width: 768px) {
-  .masthead h1, .masthead .h1 {
-    font-size: 4rem;
-    line-height: 4rem;
-  }
-}
-@media (min-width: 992px) {
-  .masthead {
-    height: 100vh;
-    padding: 0;
-  }
-  .masthead h1, .masthead .h1 {
-    font-size: 6.5rem;
-    line-height: 6.5rem;
-    letter-spacing: 0.8rem;
-  }
-  .masthead h2, .masthead .h2 {
-    max-width: 30rem;
-    font-size: 1.25rem;
-  }
-}
-
-
 
 .form-control,
 .textarea {
@@ -210,6 +153,19 @@ label, ::placeholder {
 .input-wrapper {
   margin-bottom: 1rem;
 }
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    padding: 20px;
+  }
+}
+
 
 .update-toast-title {
   // Add your desired styles here, for example:
@@ -218,6 +174,7 @@ label, ::placeholder {
   color: #5d6375; // You can use your desired color
   margin-bottom: 2rem;
 }
+
 .update-toast-container {
   h1 {
     font-size: 2rem;

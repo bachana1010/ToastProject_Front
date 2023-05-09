@@ -64,8 +64,6 @@ export class LoginComponent implements OnInit, OnChanges {
         localStorage.setItem('user_id', userId); // Store user_id in local storage
         localStorage.setItem('username', userName); // Store user_id in local storage
 
-
-        
         this.eventBus.cast('loginSuccessfully',user);
         
 
