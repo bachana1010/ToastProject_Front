@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { Router} from '@angular/router'
 
@@ -9,7 +10,9 @@ import { Router} from '@angular/router'
 })
 export class AuthService {
 
-  endpoint = 'http://127.0.0.1:8040'
+
+  endpoint = environment.apiUrl
+  // 'http://127.0.0.1:8040'
   constructor(private http: HttpClient,
               private router: Router,
               ) { }
