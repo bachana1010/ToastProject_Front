@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer,SafeUrl } from '@angular/platform-browser';
 import { AuthService } from 'src/app/services/auth.service';
+import { environment } from 'src/environments/environment';
 
 interface ApiResponse {
   data: any[];
@@ -22,6 +23,7 @@ interface DetailResponse {
   styleUrls: ['./detail-component.component.scss']
 })
 export class DetailComponentComponent implements OnInit{
+  endpoint = environment.apiUrl
 
   public printData: any = null;
   myForm: FormGroup | any;
@@ -55,7 +57,7 @@ export class DetailComponentComponent implements OnInit{
   getDetailData() {
 
     this.httpClient
-    .get<DetailResponse>(`http://127.0.0.1:8040/detail/id/${this.currentId}`)
+    .get<DetailResponse>(`${this.endpoint}/detail/id/${this.currentId}`)
     .subscribe((res) => {
       console.log(res);
       if (res.success) {
@@ -70,7 +72,7 @@ export class DetailComponentComponent implements OnInit{
 }
 
 getComments() {
-  this.httpClient.get<any[]>(`http://127.0.0.1:8040/toasts/${this.currentId}/comments`).subscribe((res) => {
+  this.httpClient.get<any[]>(`${this.endpoint}/toasts/${this.currentId}/comments`).subscribe((res) => {
     this.comments = res;
 
   });}
@@ -89,7 +91,7 @@ getComments() {
   // Set the headers with the token
   const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-    this.httpClient.post<any>(`http://127.0.0.1:8040/toasts/${this.currentId}/comments`, payload,  { headers }).subscribe((res) => {
+    this.httpClient.post<any>(`${this.endpoint}/toasts/${this.currentId}/comments`, payload,  { headers }).subscribe((res) => {
       this.comments.unshift(res);
     });
     this.newComment = ''
@@ -105,7 +107,7 @@ toggleLikeContent(contentId: number) {
 // Set the headers with the token
 const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
-  this.httpClient.post<{likes: number, dislikes: number,status: string}>(`http://127.0.0.1:8040/toggle-like/${contentId}`, {}, {headers}).subscribe(response => {
+  this.httpClient.post<{likes: number, dislikes: number,status: string}>(`${this.endpoint}/toggle-like/${contentId}`, {}, {headers}).subscribe(response => {
     this.printData.likes = response.likes;
     this.printData.dislikes = response.dislikes;
     this.printData.status = response.status;
@@ -117,7 +119,7 @@ toggleDislikeContent(contentId: number) {
   const token = localStorage.getItem('Authorization');
 // Set the headers with the token
 const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);  
-this.httpClient.post<{likes: number, dislikes: number,status: string}>(`http://127.0.0.1:8040/toggle-dislike/${contentId}`, {}, {headers}).subscribe(response => {
+this.httpClient.post<{likes: number, dislikes: number,status: string}>(`${this.endpoint}/toggle-dislike/${contentId}`, {}, {headers}).subscribe(response => {
     this.printData.likes = response.likes;
     this.printData.dislikes = response.dislikes;
     this.printData.status = response.status;

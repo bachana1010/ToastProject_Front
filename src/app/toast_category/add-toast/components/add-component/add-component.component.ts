@@ -10,6 +10,8 @@ import {map, startWith} from 'rxjs/operators';
 import { DataService } from 'src/app/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
+
 
 
 /**
@@ -32,6 +34,8 @@ export class AddComponentComponent implements OnInit {
   formData: FormData = new FormData();
   img_block = false
   user_id: any= ''
+  endpoint = environment.apiUrl
+
 
   myForm: FormGroup | any;
   public f = ''

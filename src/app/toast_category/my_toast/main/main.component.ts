@@ -7,6 +7,7 @@ import { Location } from '@angular/common';
 import { saveAs } from 'file-saver';
 import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { MatIconModule } from '@angular/material/icon';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -28,7 +29,9 @@ export class MainComponent implements OnInit {
   userId: any  = ''
   pageNumbers: number[] = [];
 
-  private apiURL = 'http://127.0.0.1:8040/delete/id';
+  endpoint = environment.apiUrl
+
+  private apiURL = `${this.endpoint}/delete/id`;
 
   constructor(private httpClient: HttpClient,
     private sanitizer: DomSanitizer,
@@ -70,7 +73,7 @@ export class MainComponent implements OnInit {
         .set('page', this.currentPage.toString())
         .set('per_page', this.perPage.toString());
   
-      this.httpClient.get<any>('http://127.0.0.1:8040/MyToast', { params, headers })
+      this.httpClient.get<any>(`${this.endpoint}/MyToast`, { params, headers })
         .subscribe(response => {
           this.handleResponse(response);
         });
@@ -186,7 +189,7 @@ openConfirmationDialog(id: number): void {
 downloadQRCode(itemId: number) {
   const currentDomain = window.location.protocol + '//' + window.location.host;
   const detailsUrl = this.location.prepareExternalUrl(`/details/${itemId}`);
-  const qrCodeUrl = `http://127.0.0.1:8040/generate_qr_code/${currentDomain}${detailsUrl}`;
+  const qrCodeUrl = `${this.endpoint}/generate_qr_code/${currentDomain}${detailsUrl}`;
 
   this.httpClient.get(qrCodeUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
     saveAs(blob, `QR_Code_${itemId}.png`);

@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
 import { RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+  endpoint = environment.apiUrl
+
   userNameprofile: any
   totalViews: any
   totalLikes: any
@@ -37,7 +40,7 @@ export class MainComponent implements OnInit {
         'Authorization': `Bearer ${token}`
       });
     
-    this.httpClient.get<any>('http://127.0.0.1:8040/MyToast', {headers })
+    this.httpClient.get<any>(`${this.endpoint}/MyToast`, {headers })
     .subscribe(response => {
       this.totalLikes = response.total_likes
       this.totalViews = response.total_views

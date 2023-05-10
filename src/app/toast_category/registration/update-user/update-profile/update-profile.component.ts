@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from 'src/app/services/auth.service';
 import { DataService } from 'src/app/services/data.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./update-profile.component.scss']
 })
 export class UpdateProfileComponent implements OnInit {
+  endpoint = environment.apiUrl
 
   updateForm: FormGroup | any ;
   info: any =''
@@ -61,7 +63,7 @@ export class UpdateProfileComponent implements OnInit {
     console.log(typeof(this.requestOptions))
     
 
-    this.httpClient.post('http://127.0.0.1:8040/updateUser',form.value, this.requestOptions).subscribe((res)=> {
+    this.httpClient.post(`${this.endpoint}/updateUser`,form.value, this.requestOptions).subscribe((res)=> {
     this.updateForm.reset() 
     console.log(res)
     alert("updated succsesfully")

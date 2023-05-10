@@ -10,6 +10,7 @@ import { DataService } from 'src/app/services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-update-toast',
@@ -19,6 +20,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 })
 export class UpdateToastComponent implements OnInit {
+  endpoint = environment.apiUrl
+
   separatorKeysCodes: number[] = [ENTER, COMMA];
   fruitCtrl = new FormControl('');
   filteredFruits: Observable<string[]>;
@@ -215,7 +218,7 @@ export class UpdateToastComponent implements OnInit {
 
   getData(toastId: number) {
     this.httpClient
-      .get<any>("http://127.0.0.1:8040/list", {})
+      .get<any>(`${this.endpoint}/list`, {})
       .subscribe((res) => {
         this.DataForUpdate = res.data.find((item: any) => item.id === toastId);
         this.url = "data:image/png;base64," + this.DataForUpdate.img;

@@ -9,6 +9,7 @@ import { DialogComponent } from 'src/app/dialog/dialog.component';
 import { saveAs } from 'file-saver';
 import { Location } from '@angular/common';
 
+import { environment } from 'src/environments/environment';
 
 
 
@@ -22,6 +23,8 @@ import {MatChipInputEvent} from '@angular/material/chips';
   styleUrls: ['./category-component.component.scss']
 })
 export class CategoryComponentComponent implements OnInit {
+  endpoint = environment.apiUrl
+
   data: any[] = [];
   currentPage = 1;
   totalPages = 1;
@@ -34,7 +37,7 @@ export class CategoryComponentComponent implements OnInit {
   pageNumbers: number[] = [];
 
 
-  private apiURL = 'http://127.0.0.1:8040/delete/id';
+  private apiURL = `${this.endpoint}/delete/id`;
 
 
 
@@ -61,7 +64,7 @@ console.log(`Params:`, params);
   downloadQRCode(itemId: number) {
     const currentDomain = window.location.protocol + '//' + window.location.host;
     const detailsUrl = this.location.prepareExternalUrl(`/details/${itemId}`);
-    const qrCodeUrl = `http://127.0.0.1:8040/generate_qr_code/${currentDomain}${detailsUrl}`;
+    const qrCodeUrl = `${this.endpoint}/generate_qr_code/${currentDomain}${detailsUrl}`;
     
     this.httpClient.get(qrCodeUrl, { responseType: 'blob' }).subscribe((blob: Blob) => {
       saveAs(blob, `QR_Code_${itemId}.png`);
@@ -83,7 +86,7 @@ console.log(`Params:`, params);
       .set('page', this.currentPage.toString())
       .set('per_page', this.perPage.toString());
 
-    this.httpClient.get<any>('http://127.0.0.1:8040/list', { params })
+    this.httpClient.get<any>(`${this.endpoint}/list`, { params })
       .subscribe(response => {
         this.handleResponse(response);
       });
